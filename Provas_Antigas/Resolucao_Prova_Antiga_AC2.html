@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Resolução Completa da Prova Antiga - Arquitetura de Computadores II</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.8cm;
+  }
+  body {
+    font-family: "Liberation Sans", "Helvetica Neue", Arial, sans-serif;
+    color: #1a202c;
+    line-height: 1.5;
+    font-size: 10.5pt;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    text-align: center;
+    border-bottom: 3px solid #2b6cb0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    color: #1a365d;
+    font-size: 18pt;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .header p {
+    color: #4a5568;
+    font-size: 10.5pt;
+    margin: 2px 0;
+  }
+  .meta-box {
+    background-color: #ebf8ff;
+    border-left: 5px solid #3182ce;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+  .meta-box p {
+    margin: 3px 0;
+    font-size: 10pt;
+  }
+  .question-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .question-title {
+    background-color: #2b6cb0;
+    color: #ffffff;
+    padding: 8px 14px;
+    font-size: 11.5pt;
+    font-weight: bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .question-body {
+    padding: 14px;
+  }
+  .enunciado {
+    background-color: #f7fafc;
+    border-left: 4px solid #cbd5e0;
+    padding: 10px;
+    margin-bottom: 12px;
+    font-size: 10.5pt;
+    color: #2d3748;
+  }
+  .gabarito {
+    background-color: #f0fff4;
+    border: 1px solid #c6f6d5;
+    border-left: 4px solid #38a169;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #22543d;
+    font-size: 11pt;
+  }
+  .passos {
+    font-size: 10pt;
+    color: #2d3748;
+  }
+  .passos h4 {
+    margin: 8px 0 4px 0;
+    color: #2b6cb0;
+    font-size: 10.5pt;
+  }
+  code, pre {
+    font-family: "Courier New", Courier, monospace;
+    background: #edf2f7;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 9.5pt;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 10pt;
+  }
+  table.data-table th, table.data-table td {
+    border: 1px solid #cbd5e0;
+    padding: 6px 10px;
+    text-align: center;
+  }
+  table.data-table th {
+    background-color: #edf2f7;
+    color: #2d3748;
+  }
+  .fraction {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.95em;
+    padding: 0 4px;
+  }
+  .fraction .num {
+    border-bottom: 1px solid #2d3748;
+    display: block;
+    padding-bottom: 1px;
+  }
+  .fraction .den {
+    display: block;
+    padding-top: 1px;
+  }
+  .math {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-style: italic;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 9pt;
+    color: #718096;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Resolução Completa da Prova Antiga</h1>
+  <p><b>Disciplina:</b> Arquitetura de Computadores II (ARQ2)</p>
+  <p><b>Aluno:</b> Arthur De Pinho De Almeida</p>
+</div>
+
+<div class="meta-box">
+  <p><b>Resumo do Documento:</b> Este documento contém o gabarito comentado e a resolução matemática e teórica detalhada de todas as 12 questões da prova antiga de Arquitetura de Computadores II.</p>
+</div>
+
+<!-- QUESTÃO 1 -->
+<div class="question-card">
+  <div class="question-title">Questão 1: Somador com Antecipação de Vai-um (CLA)</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Considere a utilização do CLA e a soma dos seguintes números (em hexadecimal) <code>92B9 + 7B3B</code>. Escolha a resposta que diga se haverá um vai-1 para fora no resultado da soma e quais os valores do propagador (P) e do gerador (G):
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra e (Sim, haverá vai-1 para fora do número | Propagador = FBBB | Gerador = 1239)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Fórmulas Lógicas do CLA (bit a bit):</b>
+          <ul>
+            <li><b>Propagador (P):</b> <span class="math">P = A OU B</span> (operação lógica OU bit a bit)</li>
+            <li><b>Gerador (G):</b> <span class="math">G = A E B</span> (operação lógica E bit a bit)</li>
+          </ul>
+        </li>
+        <li><b>Conversão dos números em binário (4 bits por dígito hex):</b>
+          <ul>
+            <li>A = 92B9<sub>16</sub> = <code>1001 0010 1011 1001</code></li>
+            <li>B = 7B3B<sub>16</sub> = <code>0111 1011 0011 1011</code></li>
+          </ul>
+        </li>
+        <li><b>Cálculo do Propagador P (A OU B):</b>
+          <ul>
+            <li>1º Dígito: 1001 OU 0111 = 1111<sub>2</sub> &rarr; <b>F</b></li>
+            <li>2º Dígito: 0010 OU 1011 = 1011<sub>2</sub> &rarr; <b>B</b></li>
+            <li>3º Dígito: 1011 OU 0011 = 1011<sub>2</sub> &rarr; <b>B</b></li>
+            <li>4º Dígito: 1001 OU 1011 = 1011<sub>2</sub> &rarr; <b>B</b></li>
+            <li><b>Propagador P = FBBB<sub>16</sub></b></li>
+          </ul>
+        </li>
+        <li><b>Cálculo do Gerador G (A E B):</b>
+          <ul>
+            <li>1º Dígito: 1001 E 0111 = 0001<sub>2</sub> &rarr; <b>1</b></li>
+            <li>2º Dígito: 0010 E 1011 = 0010<sub>2</sub> &rarr; <b>2</b></li>
+            <li>3º Dígito: 1011 E 0011 = 0011<sub>2</sub> &rarr; <b>3</b></li>
+            <li>4º Dígito: 1001 E 1011 = 1001<sub>2</sub> &rarr; <b>9</b></li>
+            <li><b>Gerador G = 1239<sub>16</sub></b></li>
+          </ul>
+        </li>
+        <li><b>Verificação do Vai-1 para fora:</b> Somando 92B9<sub>16</sub> + 7B3B<sub>16</sub> = 10DF4<sub>16</sub>. Como resultou em 5 dígitos (ultrapassando os 4 dígitos), <b>SIM, haverá vai-1 para fora do número</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 2 -->
+<div class="question-card">
+  <div class="question-title">Questão 2: Detecção de Overflow em Complemento de 2</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Para um somador de 4 bits e considerando o complemento de dois, um Overflow em uma soma pode ser identificado colocando-se qual porta lógica entre os bits de sinal e para fora do número?
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra f (xor)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Conceito de Overflow:</b> Ocorre estouro em complemento de 2 quando o resultado ultrapassa a capacidade dos 4 bits (intervalo de -8 a +7).</li>
+        <li><b>Detecção via Hardware:</b> O circuito compara o <i>vai-um de entrada</i> (C<sub>in</sub>) do bit mais significativo (bit 3 - sinal) com o <i>vai-um de saída</i> (C<sub>out</sub>) do mesmo bit.</li>
+        <li><b>Regra Eletrônica:</b> Se C<sub>in</sub> &ne; C<sub>out</sub>, ocorreu Overflow. Se C<sub>in</sub> == C<sub>out</sub>, não ocorreu overflow.</li>
+        <li><b>Porta Lógica Necessária:</b> A porta que emite 1 quando as entradas são <b>diferentes</b> é a porta <b>XOR</b> (Overflow = C<sub>in</sub> &oplus; C<sub>out</sub>).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 3 -->
+<div class="question-card">
+  <div class="question-title">Questão 3: Arquiteturas de Multiplicadores Sequenciais</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Considere os três algoritmos de multiplicação vistos em sala e representados pelas seguintes arquiteturas: Versão 1, Versão 2 e Versão 3. Marque a alternativa verdadeira:
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra e (A versão 2 possui uma ULA de tamanho menor que a versão 1)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Versão 1:</b> Utiliza uma ULA de 64 bits, registrador do multiplicando de 64 bits e registrador de produto de 64 bits.</li>
+        <li><b>Versão 2 (Otimizada):</b> Utiliza uma ULA de apenas <b>32 bits</b> (revezando a adição na metade do produto), economizando hardware.</li>
+        <li><b>Versão 3:</b> Combina o multiplicador e o produto no mesmo registrador de 64 bits.</li>
+        <li><b>Conclusão:</b> A principal vantagem da Versão 2 sobre a Versão 1 é a redução do tamanho da ULA pela metade (32 bits vs 64 bits).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 4 -->
+<div class="question-card">
+  <div class="question-title">Questão 4: Lei de Amdahl (Porcentagem de Instruções)</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Suponha que em uma máquina eu melhore o desempenho das operações aritméticas e lógicas utilizando um novo processador A que possui uma velocidade 2,5 vezes maior apenas para essas operações. Qual deveria ser a porcentagem dessas instruções aritméticas e lógicas neste processador A para que eu gastasse exatamente a metade do tempo de execução?
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra j (NDA — Nenhuma Das Anteriores, o valor exato é 83,33%)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Dados:</b> Speedup desejado = 2,0; Fator de aceleração local <span class="math">s</span> = 2,5.</li>
+        <li><b>Fórmula da Lei de Amdahl:</b>
+          <div style="margin: 6px 0;">
+            Speedup = <span class="fraction"><span class="num">1</span><span class="den">(1 - f) + <span class="fraction"><span class="num">f</span><span class="den">2,5</span></span></span></span> = 2,0
+          </div>
+        </li>
+        <li><b>Isolando f:</b>
+          <div style="margin: 6px 0;">
+            (1 - f) + 0,4f = <span class="fraction"><span class="num">1</span><span class="den">2</span></span> = 0,5 &rArr; 1 - 0,6f = 0,5
+          </div>
+          <div style="margin: 6px 0;">
+            0,6f = 0,5 &rArr; f = <span class="fraction"><span class="num">0,5</span><span class="den">0,6</span></span> = <span class="fraction"><span class="num">5</span><span class="den">6</span></span> &approx; <b>83,33%</b>
+          </div>
+        </li>
+        <li><b>Conclusão:</b> Como as opções na prova variavam de 40% a 80%, o valor de 83,33% corresponde à opção <b>NDA (Nenhuma das Anteriores)</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 5 -->
+<div class="question-card">
+  <div class="question-title">Questão 5: Análise Custo-Benefício de Upgrade de Processador</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Um novo processador A é 3 vezes mais rápido que o anterior. Considere que iremos utilizar este novo processador 50% do tempo. Se o preço deste novo processador A é 4 vezes o do processador anterior e que um processador corresponda a 1/3 do preço total da máquina, a troca será justa? Apenas divida quanto irá ficar mais rápido por quanto irá ficar mais caro. Marque o resultado desta divisão:
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra c (0,75 — Troca não é justa pois resultado é < 1)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Passo 1 (Speedup Global):</b>
+          <div style="margin: 6px 0;">
+            Speedup = <span class="fraction"><span class="num">1</span><span class="den">(1 - 0,50) + <span class="fraction"><span class="num">0,50</span><span class="den">3</span></span></span></span> = <span class="fraction"><span class="num">1</span><span class="den">0,50 + 0,1667</span></span> = <span class="fraction"><span class="num">1</span><span class="den">0,6667</span></span> = <b>1,5</b>
+          </div>
+        </li>
+        <li><b>Passo 2 (Aumento de Custo Total da Máquina):</b>
+          <ul>
+            <li>Preço da máquina antiga = 3 (Processador = 1, Restante = 2).</li>
+            <li>Novo Processador custa 4. Preço da máquina nova = 4 + 2 = <b>6</b>.</li>
+            <li>Fator de Aumento de Custo = <span class="fraction"><span class="num">6</span><span class="den">3</span></span> = <b>2,0</b>.</li>
+          </ul>
+        </li>
+        <li><b>Passo 3 (Relação Custo/Ganho):</b>
+          <div style="margin: 6px 0;">
+            Relação = <span class="fraction"><span class="num">Speedup Global</span><span class="den">Fator de Custo</span></span> = <span class="fraction"><span class="num">1,5</span><span class="den">2,0</span></span> = <b>0,75</b>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 6 -->
+<div class="question-card">
+  <div class="question-title">Questão 6: Lei de Amdahl (Ponderação de Aceleração)</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Suponha que em uma máquina eu melhore o desempenho das operações aritméticas e lógicas utilizando um processador B que possui uma velocidade 8 vezes maior apenas para essas operações. Essas operações correspondem a 60% do tempo total executado quando este novo processador B está sendo utilizado. Qual o speedup total alcançado?
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra b (2,10 — Interpretação clássica de Amdahl) ou Letra h (5,20 — Ponderação direta no tempo final)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Interpretação 1 (Amdahl Clássico - Fração no tempo original f = 0,60):</b>
+          <div style="margin: 6px 0;">
+            Speedup = <span class="fraction"><span class="num">1</span><span class="den">(1 - 0,60) + <span class="fraction"><span class="num">0,60</span><span class="den">8</span></span></span></span> = <span class="fraction"><span class="num">1</span><span class="den">0,40 + 0,075</span></span> = <span class="fraction"><span class="num">1</span><span class="den">0,475</span></span> &approx; <b>2,10</b>
+          </div>
+        </li>
+        <li><b>Interpretação 2 (Texto literal - Fração medida no tempo final f<sub>novo</sub> = 0,60):</b>
+          <div style="margin: 6px 0;">
+            Speedup = (1 - f<sub>novo</sub>) + (f<sub>novo</sub> &times; s) = (1 - 0,60) + (0,60 &times; 8) = 0,40 + 4,80 = <b>5,20</b>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- TABELA DE DADOS PARA QUESTÕES 7 A 12 -->
+<div class="meta-box" style="background-color: #f7fafc; border-left-color: #4a5568;">
+  <p><b>Tabela de Referência para as Questões 7 a 12:</b></p>
+  <table class="data-table">
+    <tr>
+      <th>Tipo da Instrução</th>
+      <th>% no Mix de Instruções</th>
+      <th>CPI da Instrução</th>
+    </tr>
+    <tr>
+      <td>Operações com ULA</td>
+      <td>45% (0,45)</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>Desvios</td>
+      <td>20% (0,20)</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Acesso à Memória</td>
+      <td>30% (0,30)</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Outras</td>
+      <td>5% (0,05)</td>
+      <td>12</td>
+    </tr>
+  </table>
+  <p><b>Frequência de Clock da Máquina Original:</b> f = 200 MHz = 200 &times; 10<sup>6</sup> Hz</p>
+</div>
+
+<!-- QUESTÃO 7 -->
+<div class="question-card">
+  <div class="question-title">Questão 7: CPI Médio da Máquina Original</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Qual o CPI médio desta máquina original?
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra d (8,4)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li>Fórmula da Média Ponderada: CPI<sub>médio</sub> = &sum; (%<sub>i</sub> &times; CPI<sub>i</sub>)</li>
+        <li>CPI<sub>médio</sub> = (0,45 &times; 8) + (0,20 &times; 6) + (0,30 &times; 10) + (0,05 &times; 12)</li>
+        <li>CPI<sub>médio</sub> = 3,6 + 1,2 + 3,0 + 0,6 = <b>8,4 ciclos/instrução</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 8 -->
+<div class="question-card">
+  <div class="question-title">Questão 8: Speedup por Alteração de Hardware/Compilador</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Calcule o Speedup sobre a máquina original para uma melhoria no Hardware/compilador que permitirá reduzir o número de ciclos das operações com a ULA em 3 ciclos, mas ao custo de aumentar a quantidade de ciclos das instruções de memória em 1 ciclo.
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra d (1,4) ou Letra c (1,14)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Novos CPIs:</b> CPI<sub>ALU</sub> = 8 - 3 = 5; CPI<sub>Memória</sub> = 10 + 1 = 11.</li>
+        <li><b>Novo CPI Médio:</b> CPI<sub>novo</sub> = (0,45 &times; 5) + (0,20 &times; 6) + (0,30 &times; 11) + (0,05 &times; 12) = 2,25 + 1,2 + 3,3 + 0,6 = <b>7,35</b>.</li>
+        <li><b>Speedup:</b> Speedup = <span class="fraction"><span class="num">8,4</span><span class="den">7,35</span></span> &approx; <b>1,14</b> (Se considerado CPI<sub>ALU_novo</sub> = 6,0 conforme anotação de prova, Speedup = <span class="fraction"><span class="num">8,4</span><span class="den">6,0</span></span> = <b>1,4</b>).</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 9 -->
+<div class="question-card">
+  <div class="question-title">Questão 9: CPI Médio com Alteração do Mix de Instruções</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Calcule o CPI médio se um novo compilador reduzir a quantidade de operações com a ULA da máquina original em 70% mas aumentando a quantidade de operações na memória em 10%.
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra f (8,6)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li><b>Supondo 100 instruções na máquina original:</b>
+          <ul>
+            <li>ULA: 45 &times; 0,30 = 13,5 inst (&times; 8 = 108 ciclos)</li>
+            <li>Desvios: 20 inst (&times; 6 = 120 ciclos)</li>
+            <li>Memória: 30 &times 1,10 = 33 inst (&times; 10 = 330 ciclos)</li>
+            <li>Outras: 5 inst (&times; 12 = 60 ciclos)</li>
+          </ul>
+        </li>
+        <li><b>Totais:</b> Novas Instruções = 71,5; Novos Ciclos = 618.</li>
+        <li><b>Novo CPI Médio:</b> CPI<sub>novo</sub> = <span class="fraction"><span class="num">618</span><span class="den">71,5</span></span> &approx; <b>8,64 &approx; 8,6</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 10 -->
+<div class="question-card">
+  <div class="question-title">Questão 10: Speedup da Otimização do Compilador</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Calcule o Speedup após esta redução da quantidade de operações com a ULA da máquina original em 70% mas aumentando a quantidade de operações na memória em 10%.
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra c (1,3 — ou 1,36)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li>Ciclos Totais Originais (para 100 inst) = 100 &times; 8,4 = 840 ciclos.</li>
+        <li>Ciclos Totais Novos (Questão 9) = 618 ciclos.</li>
+        <li><b>Speedup:</b> Speedup = <span class="fraction"><span class="num">Ciclos Originais</span><span class="den">Ciclos Novos</span></span> = <span class="fraction"><span class="num">840</span><span class="den">618</span></span> &approx; <b>1,359 &approx; 1,36 &approx; 1,3</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 11 -->
+<div class="question-card">
+  <div class="question-title">Questão 11: Tempo de Execução do Benchmark em Microsegundos</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Considere um benchmark com 10.000 instruções. Quanto tempo este programa demora em &mu;s para a máquina original.
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra c (420)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li>Fórmula do Tempo: Tempo = <span class="fraction"><span class="num">I &times; CPI</span><span class="den">f</span></span></li>
+        <li>Tempo = <span class="fraction"><span class="num">10.000 &times; 8,4</span><span class="den">200.000.000</span></span> = <span class="fraction"><span class="num">84.000</span><span class="den">200.000.000</span></span> = <span class="fraction"><span class="num">84</span><span class="den">200.000</span></span> = 0,00042 s</li>
+        <li>Convertendo para microsegundos (&mu;s = 10<sup>-6</sup> s): 0,00042 s = <b>420 &mu;s</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QUESTÃO 12 -->
+<div class="question-card">
+  <div class="question-title">Questão 12: Velocidade em MIPS da Máquina Original</div>
+  <div class="question-body">
+    <div class="enunciado">
+      <b>Enunciado:</b> Qual a velocidade em MIPS dessa máquina original?
+    </div>
+    <div class="gabarito">
+      ✓ Gabarito: Letra h (23,8)
+    </div>
+    <div class="passos">
+      <h4>Resolução Passo a Passo:</h4>
+      <ul>
+        <li>Fórmula do MIPS: MIPS = <span class="fraction"><span class="num">f<sub>clock</sub> (em MHz)</span><span class="den">CPI<sub>médio</sub></span></span></li>
+        <li>MIPS = <span class="fraction"><span class="num">200 MHz</span><span class="den">8,4</span></span> = <span class="fraction"><span class="num">2000</span><span class="den">84</span></span> &approx; <b>23,809 &approx; 23,8 MIPS</b>.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Documento gerado para o aluno Arthur De Pinho De Almeida &bull; Arquitetura de Computadores II
+</div>
+
+</body>
+</html>

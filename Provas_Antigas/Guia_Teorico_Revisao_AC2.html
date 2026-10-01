@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Guia Teórico de Revisão e Macetes - Arquitetura de Computadores II</title>
+<style>
+  @page {
+    size: A4;
+    margin: 1.8cm;
+  }
+  body {
+    font-family: "Liberation Sans", "Helvetica Neue", Arial, sans-serif;
+    color: #1a202c;
+    line-height: 1.5;
+    font-size: 10.5pt;
+    margin: 0;
+    padding: 0;
+  }
+  .header {
+    text-align: center;
+    border-bottom: 3px solid #2b6cb0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    color: #1a365d;
+    font-size: 18pt;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .header p {
+    color: #4a5568;
+    font-size: 10pt;
+    margin: 2px 0;
+  }
+  .section-title {
+    background-color: #2b6cb0;
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 11.5pt;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #3182ce;
+    padding: 12px 15px;
+    margin-bottom: 14px;
+    border-radius: 4px;
+  }
+  .card-green {
+    border-left-color: #38a169;
+    background-color: #f0fff4;
+  }
+  .card-yellow {
+    border-left-color: #d69e2e;
+    background-color: #fffff0;
+  }
+  .formula-box {
+    background-color: #ebf8ff;
+    border: 1px solid #bee3f8;
+    padding: 8px 12px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    font-size: 10.5pt;
+    color: #2c5282;
+  }
+  table.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 9.5pt;
+  }
+  table.custom-table th, table.custom-table td {
+    border: 1px solid #cbd5e0;
+    padding: 5px 8px;
+    text-align: center;
+  }
+  table.custom-table th {
+    background-color: #edf2f7;
+    color: #2d3748;
+  }
+  ul, ol {
+    margin: 4px 0 8px 20px;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 4px;
+  }
+  .fraction {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.95em;
+    padding: 0 4px;
+  }
+  .fraction .num {
+    border-bottom: 1px solid #2d3748;
+    display: block;
+    padding-bottom: 1px;
+  }
+  .fraction .den {
+    display: block;
+    padding-top: 1px;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 8.5pt;
+    color: #718096;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Guia de Revisão Rápida & Macetes Pré-Prova</h1>
+  <p><b>Disciplina:</b> Arquitetura de Computadores II (ARQ2) &bull; <b>Aluno:</b> Arthur De Pinho De Almeida</p>
+  <p>Resumo Prático de Fórmulas, Métodos de Cálculo Sem Calculadora e Passo a Passo de Resolução</p>
+</div>
+
+<!-- SEÇÃO 1: FORMULÁRIO -->
+<div class="section-title">1. Formulário Completo das 10 Fórmulas Essenciais</div>
+
+<div class="card">
+  <b>A. Equação da CPU e Métricas de Desempenho:</b>
+  <div class="formula-box">
+    1. CPI Médio: CPI<sub>médio</sub> = &sum; (%<sub>i</sub> &times; CPI<sub>i</sub>)<br>
+    2. Tempo de Execução: Tempo = <span class="fraction"><span class="num">I &times; CPI<sub>médio</sub></span><span class="den">f</span></span> = I &times; CPI<sub>médio</sub> &times; T<sub>clock</sub><br>
+    3. MIPS: MIPS = <span class="fraction"><span class="num">f<sub>clock</sub> (em MHz)</span><span class="den">CPI<sub>médio</sub></span></span>
+  </div>
+</div>
+
+<div class="card">
+  <b>B. Regras Globais do Speedup (Ganho de Velocidade):</b>
+  <div class="formula-box">
+    4. Regra Geral de Tempo: Speedup = <span class="fraction"><span class="num">Tempo<sub>Lento</sub></span><span class="den">Tempo<sub>Rápido</sub></span></span> &nbsp; (SEMPRE > 1)<br>
+    5. Fórmula Geral (Quando TUDO muda):<br>
+       Speedup = <span class="fraction"><span class="num">Ciclos<sub>Antigos</sub></span><span class="den">Ciclos<sub>Novos</sub></span></span> &times; <span class="fraction"><span class="num">f<sub>nova</sub></span><span class="den">f<sub>antiga</sub></span></span><br>
+       Speedup = <span class="fraction"><span class="num">I<sub>antigo</sub></span><span class="den">I<sub>novo</sub></span></span> &times; <span class="fraction"><span class="num">CPI<sub>antigo</sub></span><span class="den">CPI<sub>novo</sub></span></span> &times; <span class="fraction"><span class="num">f<sub>nova</sub></span><span class="den">f<sub>antiga</sub></span></span>
+  </div>
+  <ul>
+    <li><b>Macete de Posição:</b> O que é RUIM quando aumenta (Instruções e CPI) fica com o <i>Antigo no topo</i>. O que é BOM quando aumenta (Frequência f) fica com o <i>Novo no topo</i>.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <b>C. Lei de Amdahl & Análise Custo-Benefício:</b>
+  <div class="formula-box">
+    6. Lei de Amdahl: Speedup Global = <span class="fraction"><span class="num">1</span><span class="den">(1 - f) + <span class="fraction"><span class="num">f</span><span class="den">s</span></span></span></span><br>
+    7. Relação Custo/Ganho = <span class="fraction"><span class="num">Speedup Global</span><span class="den">Fator de Custo Total</span></span>
+  </div>
+  <ul>
+    <li><b>f:</b> fração de tempo original acelerada; <b>(1 - f):</b> gargalo inalterado; <b>s:</b> aceleração local da peça.</li>
+    <li><b>Regra de Decisão Econômica:</b> Se Relação Custo/Ganho > 1 &rArr; Troca viável!</li>
+    <li><b>Limite Teórico de Amdahl:</b> Mesmo se s &rarr; &infin;, o Speedup máximo nunca passa de <span class="fraction"><span class="num">1</span><span class="den">1 - f</span></span>.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <b>D. Aritmética Computacional e CLA:</b>
+  <div class="formula-box">
+    8. Propagador (P): P = A OU B &nbsp;&nbsp;(Operação lógica OU bit a bit)<br>
+    9. Gerador (G): G = A E B &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Operação lógica E bit a bit)<br>
+    10. Overflow em Complemento de 2: Overflow = C<sub>in</sub> &oplus; C<sub>out</sub> &nbsp;&nbsp;(Porta XOR no bit de sinal)
+  </div>
+</div>
+
+<!-- SEÇÃO 2: MACETES DE MATEMÁTICA -->
+<div class="section-title">2. Macetes de Matemática de Prova (Sem Calculadora)</div>
+
+<div class="card card-green">
+  <b>Macete 1: Multiplicação Sem Vírgula (O Macete Definitivo):</b>
+  <ol>
+    <li>Remova as vírgulas e multiplique como números inteiros normais (ex: 1,32 &times; 1,12 &rarr; 132 &times; 112).</li>
+    <li>Quebre em somas simples no rascunho:
+      <div style="margin: 4px 0;">
+        132 &times; 100 = 13.200 <br>
+        132 &times; 10 = 1.320 <br>
+        132 &times; 2 = 264 <br>
+        Soma = 13.200 + 1.320 + 264 = <b>14.784</b>
+      </div>
+    </li>
+    <li>Conte o total de casas decimais dos números originais (2 casas de 1,32 + 2 casas de 1,12 = <b>4 casas</b>).</li>
+    <li>Volte a vírgula 4 casas da direita para a esquerda: 14.784 &rArr; <b>1,4784 &approx; 1,48</b>.</li>
+  </ol>
+</div>
+
+<div class="card card-yellow">
+  <b>Macete 2: A Regra dos Zeros do Denominador e Casas Decimais:</b>
+  <p>Dividir por 100.000 (5 zeros) significa que o resultado final terá <b>exatamente 5 casas decimais</b> após a vírgula.</p>
+  <ul>
+    <li><b>Fórmula Prática:</b> Zeros após a vírgula = (Zeros do Denominador) - (Dígitos do Numerador).</li>
+    <li>Exemplo: <span class="fraction"><span class="num">15</span><span class="den">100.000</span></span> &rArr; Denominador tem 5 zeros, 15 tem 2 dígitos. 5 - 2 = 3 zeros após a vírgula.
+      <div style="margin-top: 4px;">
+        <span class="fraction"><span class="num">15</span><span class="den">100.000</span></span> = <b>0,00015</b>
+      </div>
+    </li>
+    <li>Exemplo 2: <span class="fraction"><span class="num">1</span><span class="den">100.000</span></span> &rArr; 5 - 1 = 4 zeros após a vírgula &rArr; <b>0,00001</b>.</li>
+  </ul>
+</div>
+
+<div class="card card-green">
+  <b>Macete 3: Divisão Rápida por "1 + Resto":</b>
+  <p>Para simplificar divisões como <span class="fraction"><span class="num">41</span><span class="den">31</span></span>:</p>
+  <ol>
+    <li>31 cabe 1 vez em 41 e sobram 10 &rArr; <span class="fraction"><span class="num">41</span><span class="den">31</span></span> = 1 + <span class="fraction"><span class="num">10</span><span class="den">31</span></span>.</li>
+    <li>Arredonde o denominador para simplificar: <span class="fraction"><span class="num">10</span><span class="den">31</span></span> &approx; <span class="fraction"><span class="num">10</span><span class="den">30</span></span> = <span class="fraction"><span class="num">1</span><span class="den">3</span></span> &approx; 0,33.</li>
+    <li>Resultado: 1 + 0,33 = <b>1,33</b>.</li>
+  </ol>
+</div>
+
+<div class="card">
+  <b>Macete 4: Tabela de Escalas e Prefixos Simétricos (De 3 em 3):</b>
+  <table class="custom-table">
+    <tr>
+      <th>Frequência (Positivo)</th>
+      <th>Expoente</th>
+      <th>Tempo (Negativo)</th>
+      <th>Expoente</th>
+      <th>Par Simétrico 1/Freq</th>
+    </tr>
+    <tr>
+      <td><b>kHz</b> (KiloHertz)</td>
+      <td>10<sup>3</sup> Hz</td>
+      <td><b>ms</b> (Milissegundo)</td>
+      <td>10<sup>-3</sup> s</td>
+      <td>1 / kHz &rarr; ms</td>
+    </tr>
+    <tr>
+      <td><b>MHz</b> (MegaHertz)</td>
+      <td>10<sup>6</sup> Hz</td>
+      <td><b>&mu;s</b> (Microsegundo)</td>
+      <td>10<sup>-6</sup> s</td>
+      <td>1 / MHz &rarr; &mu;s</td>
+    </tr>
+    <tr>
+      <td><b>GHz</b> (GigaHertz)</td>
+      <td>10<sup>9</sup> Hz</td>
+      <td><b>ns</b> (Nanossegundo)</td>
+      <td>10<sup>-9</sup> s</td>
+      <td>1 / GHz &rarr; ns</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SEÇÃO 3: PASSO A PASSO POR TIPO DE QUESTÃO -->
+<div class="section-title">3. Passo a Passo de Resolução por Tipo de Questão</div>
+
+<div class="card">
+  <b>Tópico A: Somador CLA (Propagador P e Gerador G) — Questão 1 da Prova</b>
+  <ol>
+    <li><b>Propagador P:</b> Faça a operação lógica <b>OU</b> bit a bit entre os dois números.
+      <ul><li>1001 OU 0111 = 1111<sub>2</sub> &rarr; F</li></ul>
+    </li>
+    <li><b>Gerador G:</b> Faça a operação lógica <b>E</b> bit a bit entre os dois números.
+      <ul><li>1001 E 0111 = 0001<sub>2</sub> &rarr; 1</li></ul>
+    </li>
+    <li><b>Vai-1 para fora:</b> Some os dois números normalmente em hexadecimal. Se a soma resultar em um número com mais dígitos que o original (ex: 92B9 + 7B3B = 10DF4), <b>SIM, haverá vai-1 para fora</b>.</li>
+  </ol>
+</div>
+
+<div class="card">
+  <b>Tópico B: Overflow em Complemento de 2 — Questão 2 da Prova</b>
+  <ol>
+    <li>Verifique se o resultado estoura o intervalo de 4 bits (-8 a +7).</li>
+    <li>O circuito eletrônico compara o vai-um que entra (C<sub>in</sub>) e o que sai (C<sub>out</sub>) do bit mais significativo (bit 3 - sinal).</li>
+    <li>Se C<sub>in</sub> &ne; C<sub>out</sub>, ocorre Overflow. A porta que compara se duas entradas são diferentes é a <b>Porta XOR</b> (Overflow = C<sub>in</sub> &oplus; C<sub>out</sub>).</li>
+  </ol>
+</div>
+
+<div class="card">
+  <b>Tópico C: Multiplicadores Sequenciais — Questão 3 da Prova</b>
+  <ul>
+    <li><b>Versão 1:</b> ULA de 64 bits, registrador de multiplicando de 64 bits (desloca à esquerda), produto de 64 bits.</li>
+    <li><b>Versão 2:</b> ULA de apenas <b>32 bits</b>, multiplicando fixo de 32 bits, deslocando o produto de 64 bits para a direita (<b>Vantagem: reduz a ULA pela metade</b>).</li>
+    <li><b>Versão 3:</b> Junta o multiplicador no mesmo registrador de produto de 64 bits.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <b>Tópico D: Lei de Amdahl & Custo-Benefício — Questões 4, 5, 6 da Prova</b>
+  <ol>
+    <li>Identifique a porcentagem f e o fator de aceleração s.</li>
+    <li>Calcule Speedup Global = <span class="fraction"><span class="num">1</span><span class="den">(1 - f) + <span class="fraction"><span class="num">f</span><span class="den">s</span></span></span></span>.</li>
+    <li>Para custo-benefício: divida o preço novo total pelo antigo (Fator de Custo) e faça <span class="fraction"><span class="num">Speedup Global</span><span class="den">Fator de Custo</span></span>. Se der > 1, a troca é viável!</li>
+  </ol>
+</div>
+
+<div class="footer">
+  Guia de Revisão Rápida para Prova de ARQ2 &bull; Gerado para Arthur De Pinho De Almeida
+</div>
+
+</body>
+</html>

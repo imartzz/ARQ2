@@ -1,0 +1,206 @@
+// EXERCÍCIO PRÁTICO 4
+
+String memory[100]; //memória do programa
+int pc = 4; //contador de programa
+int n = 0; //numero de instruções
+char W; //resultado da operação
+char X; //variável 1
+char Y; //variável 2
+char S; //operação desejada
+int delay_time = 4; //em segundos
+int pos_input = 0; //posição na string de entrada
+String input; //entrada
+
+void setup(){
+  Serial.begin(9000);
+  pinMode(13, OUTPUT); //F3
+  pinMode(12, OUTPUT); //F2
+  pinMode(11, OUTPUT); //F1
+  pinMode(10, OUTPUT); //F0
+}
+
+void loop(){
+  if (Serial.available() > 0) {
+    input = Serial.readString();
+  	load_memory(input);
+    program_execution();
+  }
+}
+
+void load_memory(String input){
+  memory[0] = String(pc); //PC
+  memory[1] = "0"; //W
+  memory[2] = "0"; //X
+  memory[3] = "0"; //Y
+  
+  //carregar dados da memória
+  while(pos_input < input.length() && n+4 < 100){
+    memory[n+4] = get_sub_string(input);
+    n++;
+  }
+}
+
+String get_sub_string(String input){
+  int j = 0;
+  String sub;
+  while(j < 3){
+    char c = input.charAt(pos_input);
+    if(c != ' ' && c != '\n'){
+      sub = sub + c;
+      j++;
+    }
+    pos_input++;
+  }
+  return sub;
+}
+
+void program_execution(){
+  display(); //mostrar carga do vetor
+  
+  for(int i = 0; i < n; i++){
+    String s = memory[pc];// memória do programa 
+    
+    X = s.charAt(0); //atribuição
+    Y = s.charAt(1); //atribuição
+    S = s.charAt(2); //atribuição
+    String result = operation(X, Y, S); //operação
+  	W = convert_to_hexa(result.toInt()); // conversão
+   
+    memory[0] = pc; 
+  	memory[1] = String(W);
+  	memory[2] = String(X);
+  	memory[3] = String(Y);
+    
+    light_led(result); //saída
+    display(pc); //saída do contador de progama
+    pc++; //incremento
+    delay(delay_time*1000);
+  }
+  Serial.println("\n=== End of Execution! ===\n");
+}
+
+String operation(char x, char y, char s){
+  int result = 0;
+  int A = convert_to_int(x);
+  int B = convert_to_int(y);
+  
+  //operações da ULA
+  switch(s){
+    case '0': //umL
+      result = 15;
+      break;
+    case '1': //zeroL 
+      result = 0;
+      break;
+    case '2': //AonB
+      result = A|(~B);
+      break;
+    case '3': //nAonB 
+      result = (~A)|(~B);
+      break;
+    case '4'://AeBn 
+      result = ~(A&B);
+      break;
+    case '5': //nB 
+      result = ~B;
+      break;
+    case '6': //nA
+      result = ~A;
+      break;
+    case '7': //nAxnB 
+      result = (~A)^(~B);
+      break;
+    case '8': //AxB
+      result = A^B;
+      break;
+    case '9': //copiaA 
+      result = A;
+      break;
+	case 'A': //copiaB
+      result = B;
+      break;
+    case 'B': //AeB
+      result = A&B;
+      break;
+    case 'C': //AenB 
+      result = A&(~B);
+      break;
+    case 'D': //nAeB  
+      result = (~A)&B;
+      break;       	
+	case 'E': //AoB 
+   	  result = A|B;
+      break;	
+    case 'F': //nAeBn  
+      result = ~((~A)&B);
+      break;
+    default:
+   	  Serial.println("op:" + String(s) + " a:" + String(A) + " b:" + String(B));
+      Serial.println( "Operação invalida!" );
+  } 
+  result = result & 0x0F;
+  
+  return String(result);
+}
+
+int convert_to_int(char x){
+  int result;
+   
+  if(x >= '0' && x <= '9'){
+    result = x - '0';
+  }else{
+   	result = 10+(x - 'A');
+  }
+  
+  return result;
+}
+
+String convert_to_binary(int x) {
+  char v[5];
+  for (int i = 0; i < 4; i++) {
+    v[3-i] = (x % 2)+ '0';
+    x /= 2;
+  }
+  v[4] = '\0';
+  return String(v);
+}
+
+char convert_to_hexa(int x) {
+  char result;
+  if (x >= 0 && x <= 9) {
+    result = '0' + x;
+  } else if (x >= 10 && x <= 15) {
+    result = 'A' + (x - 10);
+  }
+  return result;
+}
+
+void display(){
+  Serial.print("|");
+  for(int i = 0; i < (n+4); i++){
+  	Serial.print(memory[i]);
+    Serial.print("|");
+  }
+  Serial.print("\n");
+}
+
+void display(int address){
+  Serial.print("|");
+  for(int i = 0; i < (n+4); i++){
+    if(i == address){
+      Serial.print("->");
+    }
+  	Serial.print(memory[i]);
+    Serial.print("|");
+  }
+  Serial.print("\n");
+}
+
+void light_led(String result) {
+  int valor = result.toInt();
+  String lux = convert_to_binary(valor);
+  digitalWrite(13, lux.charAt(0) == '1' ? HIGH : LOW );
+  digitalWrite(12, lux.charAt(1) == '1' ? HIGH : LOW );
+  digitalWrite(11, lux.charAt(2) == '1' ? HIGH : LOW );
+  digitalWrite(10, lux.charAt(3) == '1' ? HIGH : LOW );
+}
