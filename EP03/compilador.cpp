@@ -210,7 +210,7 @@ int main(int argc, char* argv[]) {
     // ── Geração do arquivo de saída (.hex) 
     ofstream arqSaida(arquivoSaida);
     if (!arqSaida.is_open()) {
-        cerr << "[ERRO CRITICO] Nao foi possivel criar '" << arquivoSaida << "'!" << endl;
+        cerr << "ERRO Nao foi possivel criar '" << arquivoSaida << "'!" << endl;
         return 1;
     }
 
